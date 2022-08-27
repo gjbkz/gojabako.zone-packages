@@ -71,18 +71,18 @@ for await (const name of packages) {
     for (const [key, value] of packageJsonMap) {
         packageJson[key] = value;
     }
-    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4));
     const {dependencies} = packageJson;
     const references: Array<{path: string}> = [];
-    const paths: Record<string, Array<string>> = {};
+    // const paths: Record<string, Array<string>> = {};
     if (isString.dictionary(dependencies)) {
         for (const dependency of Object.keys(dependencies)) {
             if (dependency.startsWith(rootPackageJson.name)) {
+                dependencies[dependency] = rootPackageJson.version;
                 const prefixLength = namespace.length + 1;
                 const dependencyName = dependency.slice(prefixLength);
                 dependencyEdges.add(`${name}→${dependencyName}`);
                 references.push({path: `../${dependencyName}`});
-                paths[`${namespace}/${name}`] = [`../../${dependencyName}`];
+                // paths[`${namespace}/${name}`] = [`../../${dependencyName}`];
             }
         }
     }
@@ -95,15 +95,14 @@ for await (const name of packages) {
             rootDir: './src',
             // paths,
         },
-        include: [
-            './src/**/*.ts',
-        ],
-        exclude: [
-            './src/**/*.test.ts',
-        ],
+        include: ['./src/**/*.ts'],
+        exclude: ['./src/**/*.test.ts'],
         references,
     };
-    await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 4));
+    await Promise.all([
+        fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4)),
+        fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 4)),
+    ]);
 }
 packages.sort((a, b) => {
     if (dependencyEdges.has(`${a}→${b}`)) {

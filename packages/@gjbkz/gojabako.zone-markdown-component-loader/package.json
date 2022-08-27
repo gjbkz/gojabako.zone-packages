@@ -23,8 +23,8 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-parser": "0.0.2",
-        "@gjbkz/gojabako.zone-markdown-util": "0.0.2",
+        "@gjbkz/gojabako.zone-markdown-parser": "0.0.3",
+        "@gjbkz/gojabako.zone-markdown-util": "0.0.3",
         "@nlib/typing": "0.5.7"
     }
 }
