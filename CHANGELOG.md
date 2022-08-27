@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.5 (2022-08-27)
+
+### Continuous Integration
+
+- add --include-workspace-root ([63de4a8](https://github.com/gjbkz/gojabako.zone-markdown/commit/63de4a8bf5806ac85ae9148179fd3599d975413f))
+
+
 ## v0.0.4 (2022-08-27)
 
 ### Bug Fixes
