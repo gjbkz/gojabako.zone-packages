@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.0.4 (2022-08-27)
+
+### Bug Fixes
+
+- sync version numbers ([38738ad](https://github.com/gjbkz/gojabako.zone-markdown/commit/38738ad3bd525e3f903364ef18300fadc1866a00))
+
+### Build System
+
+- add version:install ([c854b4f](https://github.com/gjbkz/gojabako.zone-markdown/commit/c854b4fe832eb56539f4d47ce62a8c8b18c8762d))
+
+### Continuous Integration
+
+- npm install --workspaces ([4234fc5](https://github.com/gjbkz/gojabako.zone-markdown/commit/4234fc59f4e44b94493e3919698ff1ae332447a7))
+
+
 ## v0.0.3 (2022-08-27)
 
 ### Features
