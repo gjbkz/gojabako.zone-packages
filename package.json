@@ -1,0 +1,105 @@
+{
+    "name": "@gjbkz/gojabako.zone-markdown-parser",
+    "publishConfig": {
+        "access": "public"
+    },
+    "version": "0.0.0",
+    "license": "Apache-2.0",
+    "author": {
+        "name": "Kei Ito",
+        "email": "kei.itof@gmail.com",
+        "url": "https://gojabako.zone"
+    },
+    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown-parser",
+    "repository": "https://github.com/gjbkz/gojabako.zone-markdown-parser",
+    "type": "module",
+    "main": "lib/index.mjs",
+    "scripts": {
+        "test": "run-s test:*",
+        "test:type": "tsc --noEmit",
+        "test:jest": "jest",
+        "lint": "eslint --ext .ts --ext .js src",
+        "build": "run-s build:*",
+        "build:index": "nlib-indexen --output src/index.ts \"./**/*.ts\"",
+        "build:esm": "run-s build:esm:*",
+        "build:esm:tsc": "tsc --project tsconfig.esm.json",
+        "build:esm:esmify": "nlib-esmify \"./esm/**/*\"",
+        "build:cjs": "tsc --project tsconfig.cjs.json",
+        "version": "run-s build:index version:*",
+        "version:changelog": "nlib-changelog --output CHANGELOG.md",
+        "version:add": "git add ."
+    },
+    "devDependencies": {
+        "@nlib/changelog": "0.2.3",
+        "@nlib/eslint-config": "3.19.4",
+        "@nlib/esmify": "0.3.0",
+        "@nlib/githooks": "0.1.0",
+        "@nlib/indexen": "0.2.5",
+        "@nlib/lint-commit": "0.2.0",
+        "@types/eslint": "8.4.6",
+        "@types/jest": "28.1.7",
+        "@types/katex": "0.14.0",
+        "eslint": "8.22.0",
+        "eslint-plugin-jest": "26.8.7",
+        "jest": "28.1.3",
+        "lint-staged": "13.0.3",
+        "npm-run-all": "4.1.5",
+        "ts-jest": "28.0.8",
+        "typescript": "4.7.4"
+    },
+    "jest": {
+        "roots": [
+            "<rootDir>/src"
+        ],
+        "moduleFileExtensions": [
+            "js",
+            "ts"
+        ],
+        "preset": "ts-jest/presets/js-with-ts",
+        "transformIgnorePatterns": [
+            "node_modules/(?!(mdast-|unist-|micromark|parse-entities|character-entities|ccount|escape-string-regexp|markdown-table|lowlight|fault|decode-named-character-reference))"
+        ],
+        "collectCoverage": true
+    },
+    "eslintConfig": {
+        "extends": [
+            "@nlib/eslint-config"
+        ],
+        "rules": {
+            "@nlib/no-globals": "off"
+        },
+        "overrides": [
+            {
+                "files": [
+                    "*.test.ts"
+                ],
+                "plugins": [
+                    "jest"
+                ],
+                "env": {
+                    "jest/globals": true
+                }
+            }
+        ]
+    },
+    "lint-staged": {
+        "*!(.d).{ts,tsx,js,mjs,cjs,jsx}": "eslint"
+    },
+    "renovate": {
+        "extends": [
+            "github>nlibjs/renovate-config"
+        ]
+    },
+    "dependencies": {
+        "htmlparser2": "8.0.1",
+        "katex": "0.16.0",
+        "lowlight": "2.7.0",
+        "mdast": "3.0.0",
+        "mdast-util-footnote": "1.1.0",
+        "mdast-util-from-markdown": "1.2.0",
+        "mdast-util-gfm": "2.0.1",
+        "micromark-extension-footnote": "1.0.2",
+        "micromark-extension-gfm": "2.0.1",
+        "postcss": "8.4.16"
+    }
+}
