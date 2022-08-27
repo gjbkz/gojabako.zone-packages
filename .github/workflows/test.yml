@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 18.x
           cache: npm
-      - run: npm ci
+      - run: npm install --workspaces
       - run: npm run build --workspaces
       - run: npm run lint
   Test:
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 18.x
           cache: npm
-      - run: npm ci
+      - run: npm install --workspaces
       - run: npm run build --workspaces
       - run: npm test
       - uses: codecov/codecov-action@v3

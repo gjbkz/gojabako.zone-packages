@@ -11,7 +11,7 @@ jobs:
           node-version: 18.x
           cache: npm
           registry-url: https://registry.npmjs.org
-      - run: npm ci
+      - run: npm install --workspaces
       - run: npm run build --workspaces
       - run: npm publish --workspaces
         env:
