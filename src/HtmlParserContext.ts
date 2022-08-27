@@ -1,4 +1,3 @@
-import {Error, JSON} from './es/global';
 import type {SerializeAttributeOptions} from './serializeAttributes';
 import type {HtmlAstNode} from './serializeHtmlAstNode';
 import {serializeHtmlAstNode} from './serializeHtmlAstNode';

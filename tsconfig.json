@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "incremental": true,
         "target": "ESNext",
         "module": "NodeNext",
         "moduleResolution": "node",
@@ -11,6 +12,8 @@
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true
+        "noUnusedParameters": true,
+        "allowJs": true,
+        "esModuleInterop": true
     }
 }
