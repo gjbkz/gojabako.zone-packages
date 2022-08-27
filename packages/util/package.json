@@ -1,5 +1,5 @@
 {
-    "name": "@gjbkz/gojabako.zone-markdown-parser",
+    "name": "@gjbkz/gojabako.zone-markdown-util",
     "version": "0.0.2",
     "publishConfig": {
         "access": "public"
@@ -10,7 +10,7 @@
         "email": "kei.itof@gmail.com",
         "url": "https://gojabako.zone"
     },
-    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/parser",
+    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/util",
     "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
     "type": "module",
     "main": "esm/index.mjs",
@@ -22,17 +22,5 @@
         "build:index": "nlib-indexen --output src/index.ts \"./**/*.ts\"",
         "build:tsc": "tsc",
         "build:esmify": "nlib-esmify \"./esm/**/*\""
-    },
-    "dependencies": {
-        "htmlparser2": "8.0.1",
-        "katex": "0.16.0",
-        "lowlight": "2.7.0",
-        "mdast": "3.0.0",
-        "mdast-util-footnote": "1.1.0",
-        "mdast-util-from-markdown": "1.2.0",
-        "mdast-util-gfm": "2.0.1",
-        "micromark-extension-footnote": "1.0.2",
-        "micromark-extension-gfm": "2.0.1",
-        "postcss": "8.4.16"
     }
 }
