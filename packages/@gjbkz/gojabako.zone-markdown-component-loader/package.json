@@ -1,5 +1,5 @@
 {
-    "name": "@gjbkz/gojabako.zone-markdown-util",
+    "name": "@gjbkz/gojabako.zone-markdown-component-loader",
     "version": "0.0.2",
     "publishConfig": {
         "access": "public"
@@ -10,7 +10,7 @@
         "email": "kei.itof@gmail.com",
         "url": "https://gojabako.zone"
     },
-    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/util",
+    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/gojabako.zone-markdown-component-loader",
     "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
     "type": "module",
     "main": "esm/index.mjs",
@@ -19,8 +19,12 @@
     ],
     "scripts": {
         "build": "run-s build:*",
-        "build:index": "nlib-indexen --output src/index.ts \"./**/*.ts\"",
-        "build:tsc": "tsc",
+        "build:tsc": "tsc --build",
         "build:esmify": "nlib-esmify \"./esm/**/*\""
+    },
+    "dependencies": {
+        "@gjbkz/gojabako.zone-markdown-parser": "0.0.2",
+        "@gjbkz/gojabako.zone-markdown-util": "0.0.2",
+        "@nlib/typing": "0.5.7"
     }
 }

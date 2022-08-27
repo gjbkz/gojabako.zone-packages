@@ -16,9 +16,9 @@
         "test:type": "tsc --noEmit",
         "test:jest": "jest",
         "lint": "eslint --ext .ts,.js packages",
-        "sync:package.json": "ts-node-esm sync-package-json.ts",
-        "preversion": "npm run sync:package.json",
-        "version": "run-s sync:package.json version:*",
+        "sync-packages": "ts-node-esm sync-packages.ts",
+        "preversion": "npm run sync-packages",
+        "version": "run-s sync-packages version:*",
         "version:changelog": "nlib-changelog --output CHANGELOG.md",
         "version:add": "git add ."
     },
@@ -37,22 +37,24 @@
     "devDependencies": {
         "@nlib/changelog": "0.2.3",
         "@nlib/eslint-config": "3.19.4",
-        "@nlib/esmify": "0.3.0",
+        "@nlib/esmify": "0.3.2",
         "@nlib/githooks": "0.1.0",
         "@nlib/indexen": "0.2.5",
         "@nlib/lint-commit": "0.2.0",
         "@nlib/typing": "0.5.7",
         "@types/eslint": "8.4.6",
-        "@types/jest": "28.1.7",
+        "@types/jest": "28.1.8",
         "@types/katex": "0.14.0",
-        "eslint": "8.22.0",
+        "eslint": "8.23.0",
+        "eslint-import-resolver-typescript": "3.5.0",
         "eslint-plugin-jest": "26.8.7",
         "jest": "28.1.3",
         "lint-staged": "13.0.3",
         "npm-run-all": "4.1.5",
+        "rimraf": "3.0.2",
         "ts-jest": "28.0.8",
         "ts-node": "10.9.1",
-        "typescript": "4.7.4",
+        "typescript": "4.8.2",
         "webpack": "5.74.0"
     },
     "jest": {
@@ -75,6 +77,13 @@
         ],
         "rules": {
             "@nlib/no-globals": "off"
+        },
+        "settings": {
+            "import/resolver": {
+                "typescript": {
+                    "project": "packages/*/tsconfig.json"
+                }
+            }
         },
         "overrides": [
             {
@@ -102,6 +111,8 @@
         ]
     },
     "workspaces": [
-        "packages/*"
+        "packages/@gjbkz/gojabako.zone-markdown-parser",
+        "packages/@gjbkz/gojabako.zone-markdown-util",
+        "packages/@gjbkz/gojabako.zone-markdown-component-loader"
     ]
 }
