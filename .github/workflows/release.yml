@@ -12,8 +12,7 @@ jobs:
           cache: npm
           registry-url: https://registry.npmjs.org
       - run: npm ci
-      - run: npm run build
-      - run: npx @nlib/cleanup-package-json --file package.json
-      - run: npm publish
+      - run: npm run build --workspaces
+      - run: npm publish --workspaces
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
