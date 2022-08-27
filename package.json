@@ -19,6 +19,7 @@
         "sync-packages": "ts-node-esm sync-packages.ts",
         "preversion": "npm run sync-packages",
         "version": "run-s sync-packages version:*",
+        "version:install": "npm install --workspaces",
         "version:changelog": "nlib-changelog --output CHANGELOG.md",
         "version:add": "git add ."
     },
