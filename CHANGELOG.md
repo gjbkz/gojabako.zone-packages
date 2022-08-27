@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.3 (2022-08-27)
+
+### Features
+
+- add gojabako.zone-markdown-page-loader ([4462dd5](https://github.com/gjbkz/gojabako.zone-markdown/commit/4462dd52578151f9de1f27d45d10a3a48344d6f6))
+- add gojabako.zone-markdown-component-loader ([c33c928](https://github.com/gjbkz/gojabako.zone-markdown/commit/c33c928578671cc5462dc7a2214e6c2bc1182280))
+
+### Continuous Integration
+
+- build before lint ([d633846](https://github.com/gjbkz/gojabako.zone-markdown/commit/d63384602ebcb9df19e00af5a88dc7f66ea09090))
+- add --workspaces flag ([491c7e9](https://github.com/gjbkz/gojabako.zone-markdown/commit/491c7e9811cfd3f8bb7a6dfea84623e9c27edac3))
+
+
 ## v0.0.2 (2022-08-27)
 
 ### Build System

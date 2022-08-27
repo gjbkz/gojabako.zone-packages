@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-component-loader",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publishConfig": {
         "access": "public"
     },
