@@ -91,6 +91,9 @@
                 ],
                 "env": {
                     "jest/globals": true
+                },
+                "rules": {
+                    "max-lines-per-function": "off"
                 }
             }
         ]
