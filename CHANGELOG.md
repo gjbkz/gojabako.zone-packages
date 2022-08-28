@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.10 (2022-08-28)
+
+### Bug Fixes
+
+- use default import ([3c02961](https://github.com/gjbkz/gojabako.zone-markdown/commit/3c02961e2030042e8934cfe0772a34f59f593b8e))
+
+
 ## v0.0.9 (2022-08-28)
 
 ### Bug Fixes
