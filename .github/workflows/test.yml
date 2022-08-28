@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          # cache: npm
+          cache: npm
       - run: npm install --workspaces --include-workspace-root
       - run: npm run --workspaces --if-present build
       - run: npm run lint
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          # cache: npm
+          cache: npm
       - run: npm install --workspaces --include-workspace-root
       - run: npm run --workspaces --if-present build
       - run: npm test
