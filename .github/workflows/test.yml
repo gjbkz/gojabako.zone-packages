@@ -12,7 +12,7 @@ jobs:
           node-version: 18.x
           cache: npm
       - run: npm install --workspaces --include-workspace-root
-      - run: npm run build --workspaces --if-present
+      - run: npm run --workspaces --if-present build
       - run: npm run lint
   Test:
     runs-on: ubuntu-latest
@@ -25,6 +25,6 @@ jobs:
           node-version: 18.x
           cache: npm
       - run: npm install --workspaces --include-workspace-root
-      - run: npm run build --workspaces --if-present
+      - run: npm run --workspaces --if-present build
       - run: npm test
       - uses: codecov/codecov-action@v3

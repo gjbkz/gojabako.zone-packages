@@ -12,7 +12,7 @@ jobs:
           cache: npm
           registry-url: https://registry.npmjs.org
       - run: npm install --workspaces --include-workspace-root
-      - run: npm run build --workspaces --if-present
+      - run: npm run --workspaces --if-present build
       - run: npm publish --workspaces
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
