@@ -23,18 +23,6 @@
         "version:changelog": "nlib-changelog --output CHANGELOG.md",
         "version:add": "git add ."
     },
-    "dependencies": {
-        "htmlparser2": "8.0.1",
-        "katex": "0.16.0",
-        "lowlight": "2.7.0",
-        "mdast": "3.0.0",
-        "mdast-util-footnote": "1.1.0",
-        "mdast-util-from-markdown": "1.2.0",
-        "mdast-util-gfm": "2.0.1",
-        "micromark-extension-footnote": "1.0.2",
-        "micromark-extension-gfm": "2.0.1",
-        "postcss": "8.4.16"
-    },
     "devDependencies": {
         "@nlib/changelog": "0.2.3",
         "@nlib/eslint-config": "3.19.4",
