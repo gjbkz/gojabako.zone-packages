@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.0.9 (2022-08-28)
+
+### Bug Fixes
+
+- workspaces ([de66742](https://github.com/gjbkz/gojabako.zone-markdown/commit/de66742d4da7cffbe060b4f22651789b30b05f80))
+- build order ([8482d74](https://github.com/gjbkz/gojabako.zone-markdown/commit/8482d749f2a593f29626cc4c9ce7e7c22e327392))
+
+### Build System
+
+- add clear script ([c0c693c](https://github.com/gjbkz/gojabako.zone-markdown/commit/c0c693c691b5c33f25cff64c6f2ed839838bc56e))
+
+### Continuous Integration
+
+- try build twice ([40792d9](https://github.com/gjbkz/gojabako.zone-markdown/commit/40792d942c12a956f6a908fa16434a565c9a5be3))
+- enable cache ([c779308](https://github.com/gjbkz/gojabako.zone-markdown/commit/c779308377cc6be0945aa82ebdd71492aa7a0ca3))
+- disable cache ([ec8b1bd](https://github.com/gjbkz/gojabako.zone-markdown/commit/ec8b1bd869f1291aa514489a0828af5c77fd0004))
+- update the build command ([13c8b37](https://github.com/gjbkz/gojabako.zone-markdown/commit/13c8b37c4d3700d01766539fa193aef5d9e955b6))
+
+
 ## v0.0.8 (2022-08-28)
 
 ### Continuous Integration
