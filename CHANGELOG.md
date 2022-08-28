@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.7 (2022-08-28)
+
+### Features
+
+- add @gjbkz/gojabako.zone-markdown-page-loader-cjs ([ac3f268](https://github.com/gjbkz/gojabako.zone-markdown/commit/ac3f26898e19f7c84906ab357252754ce4761581))
+- add @gjbkz/gojabako.zone-markdown-component-loader-cjs ([adc7d5b](https://github.com/gjbkz/gojabako.zone-markdown/commit/adc7d5b6e9cdabab6135fa75813f4e848fe7ad4d))
+
+### Dependency Upgrades
+
+- uninstall root dependencies ([6b05c92](https://github.com/gjbkz/gojabako.zone-markdown/commit/6b05c92031b73db1125191d2b854f3829a4bfcac))
+
+
 ## v0.0.6 (2022-08-28)
 
 
