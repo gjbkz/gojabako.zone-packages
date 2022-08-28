@@ -112,11 +112,11 @@
         ]
     },
     "workspaces": [
-        "packages/@gjbkz/gojabako.zone-markdown-component-loader",
-        "packages/@gjbkz/gojabako.zone-markdown-component-loader-cjs",
-        "packages/@gjbkz/gojabako.zone-markdown-page-loader",
-        "packages/@gjbkz/gojabako.zone-markdown-page-loader-cjs",
-        "packages/@gjbkz/gojabako.zone-markdown-parser",
-        "packages/@gjbkz/gojabako.zone-markdown-util"
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-parser",
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-util",
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-component-loader",
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-component-loader-cjs",
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-page-loader",
+        "packages/@gjbkz/@gjbkz/gojabako.zone-markdown-page-loader-cjs"
     ]
 }

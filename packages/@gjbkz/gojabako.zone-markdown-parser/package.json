@@ -10,7 +10,7 @@
         "email": "kei.itof@gmail.com",
         "url": "https://gojabako.zone"
     },
-    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/gojabako.zone-markdown-parser",
+    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/@gjbkz/gojabako.zone-markdown-parser",
     "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
     "type": "module",
     "main": "esm/index.mjs",

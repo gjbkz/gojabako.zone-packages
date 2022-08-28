@@ -12,7 +12,7 @@ import {
 
 const rootDirectory = new URL('.', import.meta.url);
 const namespace = '@gjbkz';
-const namespaceDirectory = new URL(`packages/${namespace}/`, rootDirectory);
+const packagesDirectory = new URL('packages/', rootDirectory);
 const rootPackageJsonPath = new URL('package.json', rootDirectory);
 const isRootPackageJson = createTypeChecker('RootPackageJson', {
     name: isString,
@@ -37,19 +37,18 @@ const rootPackageJson = ensure(
     isRootPackageJson,
 );
 
-/** @type {Set<string>} */
-const dependencyEdges = new Set();
-const packages = await fs.readdir(namespaceDirectory);
-for await (const name of packages) {
-    console.info(name);
-    const packageJsonPath = new URL(`${name}/package.json`, namespaceDirectory);
+/** @type {Map<string, Set<string>>} */
+const dependencyMap = new Map();
+const packages = (await fs.readdir(new URL(`${namespace}/`, packagesDirectory))).map((name) => `${namespace}/${name}`);
+for await (const packageName of packages) {
+    const packageJsonPath = new URL(`${packageName}/package.json`, packagesDirectory);
     const currentPackageJson = ensure(
         JSON.parse(await fs.readFile(packageJsonPath, 'utf8')),
         isObject,
     );
     const packageJson = {};
     const packageJsonMap = new Map(Object.entries(currentPackageJson));
-    packageJson.name = `${namespace}/${name}`;
+    packageJson.name = packageName;
     packageJsonMap.delete('name');
     packageJson.version = rootPackageJson.version;
     packageJsonMap.delete('version');
@@ -59,7 +58,7 @@ for await (const name of packages) {
     packageJsonMap.delete('license');
     packageJson.author = rootPackageJson.author;
     packageJsonMap.delete('author');
-    packageJson.homepage = `${rootPackageJson.homepage}/tree/main/packages/${name}`;
+    packageJson.homepage = `${rootPackageJson.homepage}/tree/main/packages/${packageName}`;
     packageJsonMap.delete('homepage');
     packageJson.repository = rootPackageJson.repository;
     packageJsonMap.delete('repository');
@@ -78,18 +77,17 @@ for await (const name of packages) {
     /** @type {Record<string, Array<string>>} */
     const paths = {};
     if (isString.dictionary(dependencies)) {
-        for (const dependency of Object.keys(dependencies)) {
-            if (dependency.startsWith(rootPackageJson.name)) {
-                dependencies[dependency] = rootPackageJson.version;
-                const prefixLength = namespace.length + 1;
-                const dependencyName = dependency.slice(prefixLength);
-                dependencyEdges.add(`${name}→${dependencyName}`);
-                references.push({path: `../${dependencyName}`});
-                paths[`${namespace}/${name}`] = [`../../${dependencyName}/src`];
-            }
+        const keys = Object.keys(dependencies).filter((name) => name.startsWith(namespace));
+        dependencyMap.set(packageName, new Set(keys));
+        for (const dependency of keys) {
+            dependencies[dependency] = rootPackageJson.version;
+            const prefixLength = namespace.length + 1;
+            const dependencyName = dependency.slice(prefixLength);
+            references.push({path: `../${dependencyName}`});
+            paths[packageName] = [`../../${dependencyName}/src`];
         }
     }
-    const tsconfigPath = new URL(`${name}/tsconfig.json`, namespaceDirectory);
+    const tsconfigPath = new URL(`${packageName}/tsconfig.json`, packagesDirectory);
     if (await fs.stat(tsconfigPath).catch(() => null) !== null) {
         const currentTsconfig = ensure(
             JSON.parse(await fs.readFile(tsconfigPath, 'utf8')),
@@ -113,14 +111,35 @@ for await (const name of packages) {
     }
     await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4));
 }
-packages.sort((a, b) => {
-    if (dependencyEdges.has(`${a}→${b}`)) {
-        return 1;
+/**
+ * @param {string} name
+ * @param {Set<string>} history
+ */
+const listDependencies = function* (name, history = new Set()) {
+    const set = dependencyMap.get(name);
+    if (set) {
+        for (const dependency of set) {
+            if (!history.has(dependency)) {
+                yield dependency;
+                history.add(dependency);
+                yield* listDependencies(dependency, history);
+            }
+        }
     }
-    if (dependencyEdges.has(`${b}→${a}`)) {
-        return -1;
+};
+packages.sort((a, b) => {
+    for (const dependency of listDependencies(a)) {
+        if (dependency === b) {
+            return 1;
+        }
+    }
+    for (const dependency of listDependencies(b)) {
+        if (dependency === a) {
+            return -1;
+        }
     }
     return 0;
 });
+console.info(packages);
 rootPackageJson.workspaces = packages.map((name) => `packages/${namespace}/${name}`);
 await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 4));
