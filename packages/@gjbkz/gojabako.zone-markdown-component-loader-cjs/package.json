@@ -1,0 +1,23 @@
+{
+    "name": "@gjbkz/gojabako.zone-markdown-component-loader-cjs",
+    "version": "0.0.6",
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "Apache-2.0",
+    "author": {
+        "name": "Kei Ito",
+        "email": "kei.itof@gmail.com",
+        "url": "https://gojabako.zone"
+    },
+    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/gojabako.zone-markdown-component-loader-cjs",
+    "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
+    "type": "commonjs",
+    "main": "index.js",
+    "files": [
+        "index.js"
+    ],
+    "dependencies": {
+        "@gjbkz/gojabako.zone-markdown-component-loader": "0.0.6"
+    }
+}

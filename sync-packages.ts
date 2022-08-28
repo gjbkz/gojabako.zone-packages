@@ -28,8 +28,8 @@ const isRootPackageJson = createTypeChecker('RootPackageJson', {
     repository: isHttpsUrlString,
     type: isString,
     scripts: isString.dictionary,
-    dependencies: isString.dictionary,
-    devDependencies: isString.dictionary,
+    dependencies: isString.dictionary.optional,
+    devDependencies: isString.dictionary.optional,
     workspaces: isString.array,
 });
 const rootPackageJson = ensure(
@@ -62,11 +62,11 @@ for await (const name of packages) {
     packageJsonMap.delete('homepage');
     packageJson.repository = rootPackageJson.repository;
     packageJsonMap.delete('repository');
-    packageJson.type = 'module';
+    packageJson.type = packageJsonMap.get('type') || 'module';
     packageJsonMap.delete('type');
-    packageJson.main = 'esm/index.mjs';
+    packageJson.main = packageJsonMap.get('main') || 'esm/index.mjs';
     packageJsonMap.delete('main');
-    packageJson.files = ['esm'];
+    packageJson.files = packageJsonMap.get('files') || ['esm'];
     packageJsonMap.delete('files');
     for (const [key, value] of packageJsonMap) {
         packageJson[key] = value;
@@ -87,22 +87,27 @@ for await (const name of packages) {
         }
     }
     const tsconfigPath = new URL(`${name}/tsconfig.json`, namespaceDirectory);
-    const tsconfig: Record<string, unknown> = {
-        extends: '../../../tsconfig.json',
-        compilerOptions: {
-            composite: true,
-            outDir: './esm',
-            rootDir: './src',
-            // paths,
-        },
-        include: ['./src/**/*.ts'],
-        exclude: ['./src/**/*.test.ts'],
-        references,
-    };
-    await Promise.all([
-        fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4)),
-        fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 4)),
-    ]);
+    if (await fs.stat(tsconfigPath).catch(() => null) !== null) {
+        const currentTsconfig = ensure(
+            JSON.parse(await fs.readFile(tsconfigPath, 'utf8')),
+            {compilerOptions: isObject},
+        );
+        const tsconfig: Record<string, unknown> = {
+            extends: '../../../tsconfig.json',
+            compilerOptions: {
+                composite: true,
+                outDir: './esm',
+                rootDir: './src',
+                // paths,
+                ...currentTsconfig.compilerOptions,
+            },
+            include: ['./src/**/*.ts'],
+            exclude: ['./src/**/*.test.ts'],
+            references,
+        };
+        await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 4));
+    }
+    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4));
 }
 packages.sort((a, b) => {
     if (dependencyEdges.has(`${a}→${b}`)) {
