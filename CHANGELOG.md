@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.8 (2022-08-28)
+
+### Continuous Integration
+
+- add --if-present ([bca488f](https://github.com/gjbkz/gojabako.zone-markdown/commit/bca488fddc28a7ad4e175eef7546ab13c8d16a1f))
+
+
 ## v0.0.7 (2022-08-28)
 
 ### Features

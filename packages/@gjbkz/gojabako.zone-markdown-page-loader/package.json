@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-page-loader",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publishConfig": {
         "access": "public"
     },
@@ -23,8 +23,8 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-parser": "0.0.7",
-        "@gjbkz/gojabako.zone-markdown-util": "0.0.7",
+        "@gjbkz/gojabako.zone-markdown-parser": "0.0.8",
+        "@gjbkz/gojabako.zone-markdown-util": "0.0.8",
         "@nlib/typing": "0.5.7"
     }
 }
