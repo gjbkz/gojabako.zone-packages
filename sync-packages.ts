@@ -73,7 +73,7 @@ for await (const name of packages) {
     }
     const {dependencies} = packageJson;
     const references: Array<{path: string}> = [];
-    // const paths: Record<string, Array<string>> = {};
+    const paths: Record<string, Array<string>> = {};
     if (isString.dictionary(dependencies)) {
         for (const dependency of Object.keys(dependencies)) {
             if (dependency.startsWith(rootPackageJson.name)) {
@@ -82,7 +82,7 @@ for await (const name of packages) {
                 const dependencyName = dependency.slice(prefixLength);
                 dependencyEdges.add(`${name}→${dependencyName}`);
                 references.push({path: `../${dependencyName}`});
-                // paths[`${namespace}/${name}`] = [`../../${dependencyName}`];
+                paths[`${namespace}/${name}`] = [`../../${dependencyName}`];
             }
         }
     }
@@ -98,7 +98,7 @@ for await (const name of packages) {
                 composite: true,
                 outDir: './esm',
                 rootDir: './src',
-                // paths,
+                paths,
                 ...currentTsconfig.compilerOptions,
             },
             include: ['./src/**/*.ts'],

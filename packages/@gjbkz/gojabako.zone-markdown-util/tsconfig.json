@@ -3,7 +3,12 @@
     "compilerOptions": {
         "composite": true,
         "outDir": "./esm",
-        "rootDir": "./src"
+        "rootDir": "./src",
+        "paths": {
+            "@gjbkz/gojabako.zone-markdown-util": [
+                "../../gojabako.zone-markdown-parser"
+            ]
+        }
     },
     "include": [
         "./src/**/*.ts"
