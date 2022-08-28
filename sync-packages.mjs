@@ -141,5 +141,5 @@ packages.sort((a, b) => {
     return 0;
 });
 console.info(packages);
-rootPackageJson.workspaces = packages.map((name) => `packages/${namespace}/${name}`);
+rootPackageJson.workspaces = packages.map((name) => `packages/${name}`);
 await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 4));
