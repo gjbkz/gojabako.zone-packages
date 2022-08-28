@@ -3,7 +3,8 @@ import fs from 'fs/promises';
 const rootDirectory = new URL('.', import.meta.url);
 const namespace = '@gjbkz';
 const namespaceDirectory = new URL(`packages/${namespace}/`, rootDirectory);
-const deleteFile = async (fileUrl: URL) => {
+/** @param {URL} fileUrl */
+const deleteFile = async (fileUrl) => {
     const stat = await fs.stat(fileUrl).catch(() => null);
     if (stat) {
         if (stat.isDirectory()) {

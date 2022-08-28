@@ -37,7 +37,8 @@ const rootPackageJson = ensure(
     isRootPackageJson,
 );
 
-const dependencyEdges = new Set<string>();
+/** @type {Set<string>} */
+const dependencyEdges = new Set();
 const packages = await fs.readdir(namespaceDirectory);
 for await (const name of packages) {
     console.info(name);
@@ -46,7 +47,7 @@ for await (const name of packages) {
         JSON.parse(await fs.readFile(packageJsonPath, 'utf8')),
         isObject,
     );
-    const packageJson: Record<string, unknown> = {};
+    const packageJson = {};
     const packageJsonMap = new Map(Object.entries(currentPackageJson));
     packageJson.name = `${namespace}/${name}`;
     packageJsonMap.delete('name');
@@ -72,8 +73,10 @@ for await (const name of packages) {
         packageJson[key] = value;
     }
     const {dependencies} = packageJson;
-    const references: Array<{path: string}> = [];
-    const paths: Record<string, Array<string>> = {};
+    /** @type {Array<{path: string}>} */
+    const references = [];
+    /** @type {Record<string, Array<string>>} */
+    const paths = {};
     if (isString.dictionary(dependencies)) {
         for (const dependency of Object.keys(dependencies)) {
             if (dependency.startsWith(rootPackageJson.name)) {
@@ -82,7 +85,7 @@ for await (const name of packages) {
                 const dependencyName = dependency.slice(prefixLength);
                 dependencyEdges.add(`${name}→${dependencyName}`);
                 references.push({path: `../${dependencyName}`});
-                paths[`${namespace}/${name}`] = [`../../${dependencyName}`];
+                paths[`${namespace}/${name}`] = [`../../${dependencyName}/src`];
             }
         }
     }
@@ -92,14 +95,15 @@ for await (const name of packages) {
             JSON.parse(await fs.readFile(tsconfigPath, 'utf8')),
             {compilerOptions: isObject},
         );
-        const tsconfig: Record<string, unknown> = {
+        const tsconfig = {
             extends: '../../../tsconfig.json',
             compilerOptions: {
                 composite: true,
                 outDir: './esm',
                 rootDir: './src',
-                paths,
                 ...currentTsconfig.compilerOptions,
+                paths: undefined,
+                // paths,
             },
             include: ['./src/**/*.ts'],
             exclude: ['./src/**/*.test.ts'],

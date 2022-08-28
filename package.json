@@ -16,8 +16,8 @@
         "test:type": "tsc --noEmit",
         "test:jest": "jest",
         "lint": "eslint --ext .ts,.js packages",
-        "clear": "ts-node-esm clear.ts",
-        "sync-packages": "ts-node-esm sync-packages.ts",
+        "clear": "node clear.mjs",
+        "sync-packages": "node sync-packages.mjs",
         "preversion": "npm run sync-packages",
         "version": "run-s sync-packages version:*",
         "version:install": "npm install --workspaces",
@@ -89,6 +89,17 @@
                 "rules": {
                     "max-lines-per-function": "off"
                 }
+            },
+            {
+                "files": [
+                    "*.mjs"
+                ],
+                "env": {
+                    "node": true
+                },
+                "rules": {
+                    "no-console": "off"
+                }
             }
         ]
     },
@@ -101,6 +112,7 @@
         ]
     },
     "workspaces": [
+        "packages/@gjbkz/gojabako.zone-markdown-component-loader",
         "packages/@gjbkz/gojabako.zone-markdown-component-loader-cjs",
         "packages/@gjbkz/gojabako.zone-markdown-page-loader",
         "packages/@gjbkz/gojabako.zone-markdown-page-loader-cjs",

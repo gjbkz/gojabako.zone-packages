@@ -3,8 +3,7 @@
     "compilerOptions": {
         "composite": true,
         "outDir": "./esm",
-        "rootDir": "./src",
-        "paths": {}
+        "rootDir": "./src"
     },
     "include": [
         "./src/**/*.ts"
