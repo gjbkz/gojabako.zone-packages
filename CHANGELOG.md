@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.2 (2022-08-29)
+
+### Features
+
+- disable import/include tsx/ts ([cbf3da3](https://github.com/gjbkz/gojabako.zone-packages/commit/cbf3da34fc7bd58407c219064347a94e2591d968))
+
+
 ## v0.1.1 (2022-08-29)
 
 ### Bug Fixes
