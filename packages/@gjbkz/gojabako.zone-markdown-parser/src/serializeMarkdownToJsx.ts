@@ -301,11 +301,7 @@ const serializeCodeBlock = function* (
         yield* serializeEmbedding(context, node);
     } else if (lang === 'jsx' && meta === '(include)') {
         yield value;
-    } else if (lang === 'tsx' && meta === '(include)') {
-        yield value;
     } else if ((lang === 'jsx' || lang === 'js') && meta === '(import)') {
-        context.head.add(value);
-    } else if ((lang === 'tsx' || lang === 'typescript') && meta === '(import)') {
         context.head.add(value);
     } else {
         yield `<figure id="figure-${context.getId('figure')}" data-lang="${lang || ''}">`;

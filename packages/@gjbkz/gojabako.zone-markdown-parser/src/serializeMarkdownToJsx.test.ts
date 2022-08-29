@@ -340,36 +340,3 @@ test('jsx (include)', () => {
     ].join('');
     expect(actual).toBe(expected);
 });
-
-test('tsx (include)', () => {
-    const context = createSerializeMarkdownContext();
-    const source = [
-        '```tsx (include)',
-        '<button onClick={(e: unknown) => null}>text</button>',
-        '```',
-    ].join('\n');
-    const actual = [...serializeMarkdownToJsx(context, source)].join('');
-    const expected = [
-        '<>',
-        '<button onClick={(e: unknown) => null}>text</button>',
-        '</>',
-    ].join('');
-    expect(actual).toBe(expected);
-});
-
-test('tsx (import)', () => {
-    const context = createSerializeMarkdownContext();
-    const source = [
-        '```typescript (import)',
-        'import {x} from \'../x\';',
-        'const fn = (a: number) => <code>{a + a}</code>;',
-        '```',
-    ].join('\n');
-    const actual = [...serializeMarkdownToJsx(context, source)].join('');
-    const expected = '<></>';
-    expect(actual).toBe(expected);
-    expect([...context.head].join('\n').trim()).toBe([
-        'import {x} from \'../x\';',
-        'const fn = (a: number) => <code>{a + a}</code>;',
-    ].join('\n'));
-});
