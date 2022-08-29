@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.1 (2022-08-29)
+
+### Bug Fixes
+
+- serialize ts and tsx as-is ([909615d](https://github.com/gjbkz/gojabako.zone-packages/commit/909615d909254fb2bd2fa7611bdeb5c8c7ccdc50))
+
+
 ## v0.1.0 (2022-08-29)
 
 ### Features
