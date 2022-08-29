@@ -351,7 +351,7 @@ test('tsx (include)', () => {
     const actual = [...serializeMarkdownToJsx(context, source)].join('');
     const expected = [
         '<>',
-        '<button onClick={(e) => null}>text</button>',
+        '<button onClick={(e: unknown) => null}>text</button>',
         '</>',
     ].join('');
     expect(actual).toBe(expected);
@@ -361,6 +361,7 @@ test('tsx (import)', () => {
     const context = createSerializeMarkdownContext();
     const source = [
         '```typescript (import)',
+        'import {x} from \'../x\';',
         'const fn = (a: number) => <code>{a + a}</code>;',
         '```',
     ].join('\n');
@@ -368,6 +369,7 @@ test('tsx (import)', () => {
     const expected = '<></>';
     expect(actual).toBe(expected);
     expect([...context.head].join('\n').trim()).toBe([
-        'const fn = (a) => <code>{a + a}</code>;',
+        'import {x} from \'../x\';',
+        'const fn = (a: number) => <code>{a + a}</code>;',
     ].join('\n'));
 });

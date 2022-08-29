@@ -24,7 +24,6 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "esbuild": "0.15.5",
         "htmlparser2": "8.0.1",
         "katex": "0.16.0",
         "lowlight": "2.7.0",

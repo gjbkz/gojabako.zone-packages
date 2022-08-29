@@ -1,6 +1,5 @@
 // https://github.com/syntax-tree/mdast
 import type Markdown from 'mdast';
-import * as esbuild from 'esbuild';
 import {executeRegExp} from './executeRegExp.private';
 import {detectEmbedding, supportedEmbeddingType} from './detectEmbedding';
 import type {Attributes} from './serializeAttributes';
@@ -303,11 +302,11 @@ const serializeCodeBlock = function* (
     } else if (lang === 'jsx' && meta === '(include)') {
         yield value;
     } else if (lang === 'tsx' && meta === '(include)') {
-        yield transpileTsx(`() => <>${value}</>`).replace(/\s*\(\s*\)\s*=>\s*<>(.*)<\/>\s*;?\s*$/, '$1');
+        yield value;
     } else if ((lang === 'jsx' || lang === 'js') && meta === '(import)') {
         context.head.add(value);
     } else if ((lang === 'tsx' || lang === 'typescript') && meta === '(import)') {
-        context.head.add(transpileTsx(value));
+        context.head.add(value);
     } else {
         yield `<figure id="figure-${context.getId('figure')}" data-lang="${lang || ''}">`;
         if (meta) {
@@ -329,12 +328,6 @@ const serializeCodeBlock = function* (
         yield '</figure>';
     }
 };
-
-const transpileTsx = (code: string) => esbuild.transformSync(code, {
-    loader: 'tsx',
-    format: 'esm',
-    jsx: 'preserve',
-}).code;
 
 const serializeEmbedding = function* (
     context: SerializeMarkdownContext,
