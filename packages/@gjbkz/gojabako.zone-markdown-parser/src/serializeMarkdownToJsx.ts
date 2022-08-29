@@ -1,5 +1,6 @@
 // https://github.com/syntax-tree/mdast
 import type Markdown from 'mdast';
+import * as esbuild from 'esbuild';
 import {executeRegExp} from './executeRegExp.private';
 import {detectEmbedding, supportedEmbeddingType} from './detectEmbedding';
 import type {Attributes} from './serializeAttributes';
@@ -299,7 +300,19 @@ const serializeCodeBlock = function* (
     if (supportedEmbeddingType.has(`${node.lang}`)) {
         yield* serializeEmbedding(context, node);
     } else if (node.lang === 'jsx' && node.meta === '(include)') {
-        yield* serializeEmbeddedJsx(context, node);
+        yield node.value;
+    } else if (node.lang === 'tsx' && node.meta === '(include)') {
+        yield esbuild.transformSync(`() => <>${node.value}</>`, {
+            loader: 'tsx',
+            format: 'esm',
+            jsx: 'preserve',
+        }).code.replace(/\s*\(\s*\)\s*=>\s*<>(.*)<\/>\s*;?\s*$/, '$1');
+    } else if (node.lang === 'typescript' && node.meta === '(include)') {
+        context.head.add(esbuild.transformSync(node.value, {
+            loader: 'ts',
+            format: 'esm',
+            jsx: 'preserve',
+        }).code);
     } else {
         yield `<figure id="figure-${context.getId('figure')}" data-lang="${node.lang || ''}">`;
         if (node.meta) {
@@ -335,17 +348,4 @@ const serializeEmbedding = function* (
     }
     context.components.add('ui/Embed');
     yield `<Embed type="${embedding.type}">${embedding.jsx}</Embed>`;
-};
-
-const serializeEmbeddedJsx = function* (
-    context: SerializeMarkdownContext,
-    node: Markdown.Code,
-) {
-    let code = node.value;
-    const comment = (/\/\*{16}\/\s*?/).exec(code);
-    if (comment) {
-        context.head.add(code.slice(0, comment.index).trim());
-        code = code.slice(comment.index + comment[0].length).trim();
-    }
-    yield code;
 };

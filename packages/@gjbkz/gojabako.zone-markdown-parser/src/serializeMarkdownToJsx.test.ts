@@ -309,3 +309,50 @@ test('heading from root', () => {
     ].join('');
     expect(actual).toBe(expected);
 });
+
+test('jsx (include)', () => {
+    const context = createSerializeMarkdownContext();
+    const source = [
+        '```jsx (include)',
+        '<p>{\'Hello!\'}</p>',
+        '```',
+    ].join('\n');
+    const actual = [...serializeMarkdownToJsx(context, source)].join('');
+    const expected = [
+        '<>',
+        '<p>{\'Hello!\'}</p>',
+        '</>',
+    ].join('');
+    expect(actual).toBe(expected);
+});
+
+test('tsx (include)', () => {
+    const context = createSerializeMarkdownContext();
+    const source = [
+        '```tsx (include)',
+        '<button onClick={(e: unknown) => null}>text</button>',
+        '```',
+    ].join('\n');
+    const actual = [...serializeMarkdownToJsx(context, source)].join('');
+    const expected = [
+        '<>',
+        '<button onClick={(e) => null}>text</button>',
+        '</>',
+    ].join('');
+    expect(actual).toBe(expected);
+});
+
+test('typescript (include)', () => {
+    const context = createSerializeMarkdownContext();
+    const source = [
+        '```typescript (include)',
+        'const fn = (a: number): number => a + a;',
+        '```',
+    ].join('\n');
+    const actual = [...serializeMarkdownToJsx(context, source)].join('');
+    const expected = '<></>';
+    expect(actual).toBe(expected);
+    expect([...context.head].join('\n').trim()).toBe([
+        'const fn = (a) => a + a;',
+    ].join('\n'));
+});
