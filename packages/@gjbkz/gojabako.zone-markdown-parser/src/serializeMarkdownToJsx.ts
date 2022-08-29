@@ -297,43 +297,44 @@ const serializeCodeBlock = function* (
     node: Markdown.Code,
     nextAncestors: Array<Markdown.Content | Markdown.Root>,
 ) {
-    if (supportedEmbeddingType.has(`${node.lang}`)) {
+    const {lang, meta, value} = node;
+    if (supportedEmbeddingType.has(`${lang}`)) {
         yield* serializeEmbedding(context, node);
-    } else if (node.lang === 'jsx' && node.meta === '(include)') {
-        yield node.value;
-    } else if (node.lang === 'tsx' && node.meta === '(include)') {
-        yield esbuild.transformSync(`() => <>${node.value}</>`, {
-            loader: 'tsx',
-            format: 'esm',
-            jsx: 'preserve',
-        }).code.replace(/\s*\(\s*\)\s*=>\s*<>(.*)<\/>\s*;?\s*$/, '$1');
-    } else if (node.lang === 'typescript' && node.meta === '(include)') {
-        context.head.add(esbuild.transformSync(node.value, {
-            loader: 'ts',
-            format: 'esm',
-            jsx: 'preserve',
-        }).code);
+    } else if (lang === 'jsx' && meta === '(include)') {
+        yield value;
+    } else if (lang === 'tsx' && meta === '(include)') {
+        yield transpileTsx(`() => <>${value}</>`).replace(/\s*\(\s*\)\s*=>\s*<>(.*)<\/>\s*;?\s*$/, '$1');
+    } else if ((lang === 'jsx' || lang === 'js') && meta === '(import)') {
+        context.head.add(value);
+    } else if ((lang === 'tsx' || lang === 'typescript') && meta === '(import)') {
+        context.head.add(transpileTsx(value));
     } else {
-        yield `<figure id="figure-${context.getId('figure')}" data-lang="${node.lang || ''}">`;
-        if (node.meta) {
-            const {children: [caption]} = context.parseMarkdown(node.meta);
+        yield `<figure id="figure-${context.getId('figure')}" data-lang="${lang || ''}">`;
+        if (meta) {
+            const {children: [caption]} = context.parseMarkdown(meta);
             if ('children' in caption) {
                 yield* serializeElement(context, 'figcaption', null, caption, nextAncestors);
             }
         }
-        switch (node.lang) {
+        switch (lang) {
         case 'math':
-            yield* serializeTeXToJsx(node.value, {displayMode: true});
+            yield* serializeTeXToJsx(value, {displayMode: true});
             yield '<span className="katex-source">{';
-            yield JSON.stringify(`\n${node.value}\n`);
+            yield JSON.stringify(`\n${value}\n`);
             yield '}</span>';
             break;
         default:
-            yield* serializeCodeToJsx(node.lang, node.value);
+            yield* serializeCodeToJsx(lang, value);
         }
         yield '</figure>';
     }
 };
+
+const transpileTsx = (code: string) => esbuild.transformSync(code, {
+    loader: 'tsx',
+    format: 'esm',
+    jsx: 'preserve',
+}).code;
 
 const serializeEmbedding = function* (
     context: SerializeMarkdownContext,

@@ -310,6 +310,21 @@ test('heading from root', () => {
     expect(actual).toBe(expected);
 });
 
+test('jsx (import)', () => {
+    const context = createSerializeMarkdownContext();
+    const source = [
+        '```jsx (import)',
+        'const f = () => <p>{\'Hello!\'}</p>',
+        '```',
+    ].join('\n');
+    const actual = [...serializeMarkdownToJsx(context, source)].join('');
+    const expected = '<></>';
+    expect(actual).toBe(expected);
+    expect([...context.head].join('\n').trim()).toBe([
+        'const f = () => <p>{\'Hello!\'}</p>',
+    ].join('\n'));
+});
+
 test('jsx (include)', () => {
     const context = createSerializeMarkdownContext();
     const source = [
@@ -342,17 +357,17 @@ test('tsx (include)', () => {
     expect(actual).toBe(expected);
 });
 
-test('typescript (include)', () => {
+test('tsx (import)', () => {
     const context = createSerializeMarkdownContext();
     const source = [
-        '```typescript (include)',
-        'const fn = (a: number): number => a + a;',
+        '```typescript (import)',
+        'const fn = (a: number) => <code>{a + a}</code>;',
         '```',
     ].join('\n');
     const actual = [...serializeMarkdownToJsx(context, source)].join('');
     const expected = '<></>';
     expect(actual).toBe(expected);
     expect([...context.head].join('\n').trim()).toBe([
-        'const fn = (a) => a + a;',
+        'const fn = (a) => <code>{a + a}</code>;',
     ].join('\n'));
 });
