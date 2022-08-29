@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-page-loader",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "publishConfig": {
         "access": "public"
     },
@@ -10,8 +10,8 @@
         "email": "kei.itof@gmail.com",
         "url": "https://gojabako.zone"
     },
-    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/@gjbkz/gojabako.zone-markdown-page-loader",
-    "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
+    "homepage": "https://github.com/gjbkz/gojabako.zone-packages/tree/main/packages/@gjbkz/gojabako.zone-markdown-page-loader",
+    "repository": "https://github.com/gjbkz/gojabako.zone-packages",
     "type": "module",
     "main": "esm/index.mjs",
     "files": [
@@ -23,8 +23,8 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-parser": "0.0.10",
-        "@gjbkz/gojabako.zone-markdown-util": "0.0.10",
+        "@gjbkz/gojabako.zone-markdown-parser": "0.0.11",
+        "@gjbkz/gojabako.zone-markdown-util": "0.0.11",
         "@nlib/typing": "0.5.7"
     }
 }

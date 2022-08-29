@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-page-loader-cjs",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "publishConfig": {
         "access": "public"
     },
@@ -10,14 +10,14 @@
         "email": "kei.itof@gmail.com",
         "url": "https://gojabako.zone"
     },
-    "homepage": "https://github.com/gjbkz/gojabako.zone-markdown/tree/main/packages/@gjbkz/gojabako.zone-markdown-page-loader-cjs",
-    "repository": "https://github.com/gjbkz/gojabako.zone-markdown",
+    "homepage": "https://github.com/gjbkz/gojabako.zone-packages/tree/main/packages/@gjbkz/gojabako.zone-markdown-page-loader-cjs",
+    "repository": "https://github.com/gjbkz/gojabako.zone-packages",
     "type": "commonjs",
     "main": "index.js",
     "files": [
         "index.js"
     ],
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-page-loader": "0.0.10"
+        "@gjbkz/gojabako.zone-markdown-page-loader": "0.0.11"
     }
 }
