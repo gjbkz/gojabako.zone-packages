@@ -38,7 +38,7 @@ const markdownComponentLoader: LoaderDefinitionFunction = function (content) {
     });
     return [
         head,
-        `export default function Markdown() {return <>${jsx}${foot}</>}`,
+        `export default function Markdown(props) {return <>${jsx}${foot}</>}`,
     ].join('\n');
 };
 

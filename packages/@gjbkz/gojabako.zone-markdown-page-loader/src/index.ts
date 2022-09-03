@@ -44,7 +44,7 @@ const markdownPageLoader: LoaderDefinitionFunction = function (content) {
     const {head, foot} = finalizeSerializeMarkdownContext(context, {file: resourcePath, getComponentPath});
     const excerpt = getMarkdownExcerpt(200, ...bodyNodes);
     return `${head}
-export default function MarkdownPage() {
+export default function MarkdownPage(props) {
     return <>
         <HtmlHead description=${JSON.stringify(excerpt)} pathname="${pathname}"/>
         <main>
