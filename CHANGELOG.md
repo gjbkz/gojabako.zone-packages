@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.6 (2022-09-03)
+
+### Bug Fixes
+
+- use relative path ([20c79ca](https://github.com/gjbkz/gojabako.zone-packages/commit/20c79cad4a30922160e3c752d4ee40ef3b68c41b))
+
+
 ## v0.1.5 (2022-09-03)
 
 ### Features
