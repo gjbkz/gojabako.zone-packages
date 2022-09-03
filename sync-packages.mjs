@@ -84,7 +84,7 @@ for await (const packageName of packages) {
             const prefixLength = namespace.length + 1;
             const dependencyName = dependency.slice(prefixLength);
             references.push({path: `../${dependencyName}`});
-            paths[packageName] = [`../../${dependencyName}/src`];
+            paths[packageName] = [`../${dependencyName}/src`];
         }
     }
     const tsconfigPath = new URL(`${packageName}/tsconfig.json`, packagesDirectory);
@@ -100,8 +100,11 @@ for await (const packageName of packages) {
                 outDir: './esm',
                 rootDir: './src',
                 ...currentTsconfig.compilerOptions,
-                paths: undefined,
-                // paths,
+                baseUrl: '.',
+                paths: {
+                    // ...paths,
+                    ...currentTsconfig.compilerOptions.paths,
+                },
             },
             include: ['./src/**/*.ts'],
             exclude: ['./src/**/*.test.ts'],

@@ -3,7 +3,14 @@
     "compilerOptions": {
         "composite": true,
         "outDir": "./esm",
-        "rootDir": "./src"
+        "rootDir": "./src",
+        "baseUrl": ".",
+        "paths": {
+            "@squoosh/lib": [
+                "./squoosh.d.ts"
+            ]
+        },
+        "lib": []
     },
     "include": [
         "./src/**/*.ts"

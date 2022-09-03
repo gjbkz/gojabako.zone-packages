@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import * as squoosh from '@squoosh/lib';
+import {ImagePool} from '@squoosh/lib';
 import {getHash} from '@gjbkz/gojabako.zone-node-util';
 import {loadPreviousResult} from './loadPreviousResult';
 import {processImage} from './processImage';
@@ -20,7 +20,7 @@ export interface BuildImagesProps {
 export const buildImages = async (props: BuildImagesProps) => {
     for await (const absolutePath of props.imageFiles) {
         const {previous, outputDirectory} = await loadImage(absolutePath, props);
-        const imagePool = new squoosh.ImagePool(os.cpus().length);
+        const imagePool = new ImagePool(os.cpus().length);
         const relativePath = path.relative(props.rootDirectory, absolutePath);
         const result = previous || await processImage(imagePool, {
             ...props,
