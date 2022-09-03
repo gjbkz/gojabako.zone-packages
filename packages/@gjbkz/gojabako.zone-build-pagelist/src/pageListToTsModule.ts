@@ -16,9 +16,7 @@ export interface PageData {
     archiveOf?: string,
     description?: string,
 }
-export const pageListByPublishedAt: Array<PageData> = JSON.parse(
-    ${JSON.stringify(JSON.stringify(pageListByPublishedAt))}
-);
+export const pageListByPublishedAt: Array<PageData> = ${JSON.stringify(pageListByPublishedAt)};
 export const pageListByUpdatedAt: Array<PageData> = ${JSON.stringify(toListByUpdatedAt)}
 .map((index) => pageListByPublishedAt[index]);
 `.trim();

@@ -1,3 +1,4 @@
+import * as path from 'path';
 import {getPageTitle, getPagePathName} from '@gjbkz/gojabako.zone-markdown-util';
 import {getFileData} from '@gjbkz/gojabako.zone-node-util';
 import {loadPageMetaDataPatch} from './loadPageMetaDataPatch';
@@ -14,6 +15,7 @@ export interface PageMetaData {
 
 export interface FindPageMetaDataProps {
     absolutePath: string,
+    rootDirectory: string,
     pagesDirectory: string,
 }
 
@@ -30,7 +32,7 @@ export const findPageMetaData = async (
         patch,
     ] = await Promise.all([
         getPageTitle(props.absolutePath),
-        getFileData(props.absolutePath),
+        getFileData(path.relative(props.rootDirectory, props.absolutePath)),
         loadPageMetaDataPatch(props.absolutePath),
     ]);
     const publishedAt = firstCommitAt;

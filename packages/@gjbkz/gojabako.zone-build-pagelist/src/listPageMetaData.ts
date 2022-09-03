@@ -8,6 +8,7 @@ const isPageFile = (filePath: string) => !filePath.endsWith('.component.tsx')
 && ((/\.tsx?$/).test(filePath) || filePath.endsWith('.page.md'));
 
 export interface ListPageMetaDataProps {
+    rootDirectory: string,
     pagesDirectory: string,
 }
 
