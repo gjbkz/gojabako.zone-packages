@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.7 (2022-09-03)
+
+### Bug Fixes
+
+- add spaces ([a908ca9](https://github.com/gjbkz/gojabako.zone-packages/commit/a908ca9d1a3d6c87427aafa0334ae6f276db8757))
+
+
 ## v0.1.6 (2022-09-03)
 
 ### Bug Fixes

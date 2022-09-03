@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-build-pagelist",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "publishConfig": {
         "access": "public"
     },
@@ -24,8 +24,8 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-util": "0.1.6",
-        "@gjbkz/gojabako.zone-node-util": "0.1.6",
+        "@gjbkz/gojabako.zone-markdown-util": "0.1.7",
+        "@gjbkz/gojabako.zone-node-util": "0.1.7",
         "@nlib/typing": "0.5.7"
     }
 }
