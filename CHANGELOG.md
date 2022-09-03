@@ -1,5 +1,32 @@
 # Changelog
 
+## v0.1.5 (2022-09-03)
+
+### Features
+
+- add generatePageList ([a0df8cf](https://github.com/gjbkz/gojabako.zone-packages/commit/a0df8cf905ef7e5a1c9d5c198952efea84943980))
+- add loadPageMetaDataPatch ([f18f65c](https://github.com/gjbkz/gojabako.zone-packages/commit/f18f65c9b0eb1dbd8f4a0ac049b23a78dc63dc52))
+- add getFileData ([c76a7b2](https://github.com/gjbkz/gojabako.zone-packages/commit/c76a7b2a93e92633b616d72cae1b035b19abf6cf))
+- add isDateString ([d075f91](https://github.com/gjbkz/gojabako.zone-packages/commit/d075f9162789c81f1ce5d6a98749abbebf1c21fa))
+- add listCommits ([cb7f767](https://github.com/gjbkz/gojabako.zone-packages/commit/cb7f7677ddff059050e78fc0b15acc1baac69784))
+- add spawn ([445398d](https://github.com/gjbkz/gojabako.zone-packages/commit/445398d684fee6cdc94c539681b8df3e3aaba763))
+- add Terminator ([74f727f](https://github.com/gjbkz/gojabako.zone-packages/commit/74f727f803f040f38f518dd1fe4bd26859eefb9a))
+
+### Bug Fixes
+
+- package order ([be44577](https://github.com/gjbkz/gojabako.zone-packages/commit/be445775427351216f7a07f46143cb08a482180e))
+- sort function ([a4298e0](https://github.com/gjbkz/gojabako.zone-packages/commit/a4298e0c3d52cbf3417702805111ce1a45d872a3))
+- type errors ([ae174f5](https://github.com/gjbkz/gojabako.zone-packages/commit/ae174f554af2764074bc331160e9ebf2d9011345))
+
+### Tests
+
+- skip tsc --noEmit ([1e787ed](https://github.com/gjbkz/gojabako.zone-packages/commit/1e787ed391c904434da80a34cf8781fe592420d6))
+
+### Dependency Upgrades
+
+- remove @gjbkz/gojabako.zone-markdown-parser ([bdd930c](https://github.com/gjbkz/gojabako.zone-packages/commit/bdd930c2f014a88890a17f73d9a735e567d2c01a))
+
+
 ## v0.1.4 (2022-09-03)
 
 ### Features
