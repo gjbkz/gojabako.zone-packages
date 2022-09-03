@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.8 (2022-09-03)
+
+### Features
+
+- add @gjbkz/gojabako.zone-kuromoji ([e4657e1](https://github.com/gjbkz/gojabako.zone-packages/commit/e4657e1fd51015e6ce280f6c2c4e8a02317e8243))
+
+### Dependency Upgrades
+
+- @nlib/eslint-config:3.19.4→3.19.5 ([3a65f3c](https://github.com/gjbkz/gojabako.zone-packages/commit/3a65f3c0bd11209e2039c2c05b54aa05429253fc))
+- add kuromoji ([243f1a8](https://github.com/gjbkz/gojabako.zone-packages/commit/243f1a8f4b11ac49fbed9f22cc5e8703e667f521))
+
+
 ## v0.1.7 (2022-09-03)
 
 ### Bug Fixes
