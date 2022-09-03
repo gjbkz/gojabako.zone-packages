@@ -1,0 +1,19 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "composite": true,
+        "outDir": "./esm",
+        "rootDir": "./src"
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "./src/**/*.test.ts"
+    ],
+    "references": [
+        {
+            "path": "../gojabako.zone-markdown-parser"
+        }
+    ]
+}
