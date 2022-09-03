@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.3 (2022-09-03)
+
+### Features
+
+- expose props ([4e62cda](https://github.com/gjbkz/gojabako.zone-packages/commit/4e62cda3dc7322d062e1557a89355ded2dc38e77))
+
+
 ## v0.1.2 (2022-08-29)
 
 ### Features
