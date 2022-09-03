@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import {isHttpsUrlString, isObject, isString} from '@nlib/typing';
-import {ignoreENOENT} from './ignoreENOENT';
-import {isDateString} from './isDateString';
+import {ignoreENOENT, isDateString} from '@gjbkz/gojabako.zone-node-util';
 
 export interface PageMetaDataPatch {
     title?: string,

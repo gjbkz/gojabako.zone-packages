@@ -28,7 +28,7 @@ const markdownPageLoader: LoaderDefinitionFunction = function (content) {
         if (!href.startsWith('/')) {
             file = `${baseDirectoryPath}/${href}`;
         }
-        return getPagePathName({file, pagesDirectory});
+        return getPagePathName({absolutePath: file, pagesDirectory});
     };
     const context = createSerializeMarkdownContext({transformLink});
     const root = context.parseMarkdown(content);
@@ -40,7 +40,7 @@ const markdownPageLoader: LoaderDefinitionFunction = function (content) {
     context.components.add('site/HtmlHead');
     context.components.add('site/PageTitle');
     const body = [...serializeMarkdownRootToJsx(context, root)].join('');
-    const pathname = getPagePathName({file: resourcePath, pagesDirectory});
+    const pathname = getPagePathName({absolutePath: resourcePath, pagesDirectory});
     const {head, foot} = finalizeSerializeMarkdownContext(context, {file: resourcePath, getComponentPath});
     const excerpt = getMarkdownExcerpt(200, ...bodyNodes);
     return `${head}

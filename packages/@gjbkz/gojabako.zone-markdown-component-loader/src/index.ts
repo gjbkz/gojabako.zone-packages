@@ -28,7 +28,7 @@ const markdownComponentLoader: LoaderDefinitionFunction = function (content) {
         if (!href.startsWith('/')) {
             file = `${baseDirectoryPath}/${href}`;
         }
-        return getPagePathName({file, pagesDirectory});
+        return getPagePathName({absolutePath: file, pagesDirectory});
     };
     const context = createSerializeMarkdownContext({transformLink});
     const jsx = [...serializeMarkdownToJsx(context, content)].join('');

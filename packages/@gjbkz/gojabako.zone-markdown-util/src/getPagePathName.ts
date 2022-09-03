@@ -2,13 +2,13 @@ import * as path from 'path';
 
 interface Props {
     /** absolute path to the source file */
-    file: string,
+    absolutePath: string,
     /** absolute path to the pages directory */
     pagesDirectory: string,
 }
 
-export const getPagePathName = ({file, pagesDirectory}: Props): string => {
-    const normalizedFileAbsolutePath = path.normalize(file.split('/').join(path.sep));
+export const getPagePathName = ({absolutePath, pagesDirectory}: Props): string => {
+    const normalizedFileAbsolutePath = path.normalize(absolutePath.split('/').join(path.sep));
     if (!normalizedFileAbsolutePath.startsWith(pagesDirectory)) {
         throw new Error(`The page file isn't in the pages directory: ${normalizedFileAbsolutePath}`);
     }
