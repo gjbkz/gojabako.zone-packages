@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-util",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "publishConfig": {
         "access": "public"
     },
@@ -24,7 +24,7 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-parser": "0.1.8",
+        "@gjbkz/gojabako.zone-markdown-parser": "0.1.9",
         "mdast-util-from-markdown": "1.2.0"
     }
 }

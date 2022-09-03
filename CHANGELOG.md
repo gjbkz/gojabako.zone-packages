@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.9 (2022-09-03)
+
+### Bug Fixes
+
+- use default export ([7bcbb22](https://github.com/gjbkz/gojabako.zone-packages/commit/7bcbb220d9426ed5df03a1e36cc79c7e67d8c5b6))
+
+
 ## v0.1.8 (2022-09-03)
 
 ### Features
