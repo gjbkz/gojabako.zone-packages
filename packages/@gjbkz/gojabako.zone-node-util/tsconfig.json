@@ -13,9 +13,5 @@
     "exclude": [
         "./src/**/*.test.ts"
     ],
-    "references": [
-        {
-            "path": "../gojabako.zone-markdown-parser"
-        }
-    ]
+    "references": []
 }

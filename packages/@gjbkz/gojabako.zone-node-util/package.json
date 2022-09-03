@@ -24,7 +24,6 @@
         "build:esmify": "nlib-esmify \"./esm/**/*\""
     },
     "dependencies": {
-        "@gjbkz/gojabako.zone-markdown-parser": "0.1.4",
         "@nlib/typing": "0.5.7",
         "mdast-util-from-markdown": "1.2.0"
     }
