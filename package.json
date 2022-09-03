@@ -63,9 +63,6 @@
         "extends": [
             "@nlib/eslint-config"
         ],
-        "rules": {
-            "@nlib/no-globals": "off"
-        },
         "settings": {
             "import/resolver": {
                 "typescript": {
