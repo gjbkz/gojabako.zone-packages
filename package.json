@@ -110,6 +110,7 @@
         ]
     },
     "workspaces": [
+        "packages/@gjbkz/gojabako.zone-kuromoji",
         "packages/@gjbkz/gojabako.zone-markdown-parser",
         "packages/@gjbkz/gojabako.zone-markdown-util",
         "packages/@gjbkz/gojabako.zone-node-util",
