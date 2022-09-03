@@ -114,35 +114,25 @@ for await (const packageName of packages) {
     }
     await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4));
 }
-/**
- * @param {string} name
- * @param {Set<string>} history
- */
-const listDependencies = function* (name, history = new Set()) {
-    const set = dependencyMap.get(name);
-    if (set) {
-        for (const dependency of set) {
-            if (!history.has(dependency)) {
-                yield dependency;
-                history.add(dependency);
-                yield* listDependencies(dependency, history);
+const sortPackages = function* () {
+    const yielded = new Set();
+    let loopCount = 0;
+    while (0 < dependencyMap.size) {
+        for (const [name, set] of dependencyMap) {
+            for (const yieldedName of yielded) {
+                set.delete(yieldedName);
             }
+            if (set.size === 0) {
+                dependencyMap.delete(name);
+                yield name;
+                yielded.add(name);
+            }
+        }
+        if (20 < ++loopCount) {
+            throw new Error(`TooComplex: ${JSON.stringify([...dependencyMap], null, 2)}`);
         }
     }
 };
-packages.sort((a, b) => {
-    for (const dependency of listDependencies(a)) {
-        if (dependency === b) {
-            return 1;
-        }
-    }
-    for (const dependency of listDependencies(b)) {
-        if (dependency === a) {
-            return -1;
-        }
-    }
-    return 0;
-});
-console.info(packages);
-rootPackageJson.workspaces = packages.map((name) => `packages/${name}`);
+rootPackageJson.workspaces = [...sortPackages()].map((name) => `packages/${name}`);
+console.info(rootPackageJson.workspaces);
 await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 4));
