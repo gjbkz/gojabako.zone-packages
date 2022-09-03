@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.4 (2022-09-03)
+
+### Features
+
+- add @gjbkz/gojabako.zone-build-images ([13824dd](https://github.com/gjbkz/gojabako.zone-packages/commit/13824dd5b35846a1a2ff2854452dd05c252a9241))
+
+
 ## v0.1.3 (2022-09-03)
 
 ### Features
