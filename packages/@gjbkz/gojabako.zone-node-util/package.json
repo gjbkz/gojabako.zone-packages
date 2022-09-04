@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-node-util",
-    "version": "0.1.10",
+    "version": "0.1.12",
     "publishConfig": {
         "access": "public"
     },

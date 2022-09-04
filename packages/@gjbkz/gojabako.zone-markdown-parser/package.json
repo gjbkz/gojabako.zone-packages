@@ -1,6 +1,6 @@
 {
     "name": "@gjbkz/gojabako.zone-markdown-parser",
-    "version": "0.1.10",
+    "version": "0.1.12",
     "publishConfig": {
         "access": "public"
     },

@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.12 (2022-09-04)
+
+### Bug Fixes
+
+- run sync-packages twice ([c5c8573](https://github.com/gjbkz/gojabako.zone-packages/commit/c5c85732fb5452a3371d6991fdaf6669eebf2c61))
+
+
 ## v0.1.11 (2022-09-04)
 
 ### Bug Fixes
