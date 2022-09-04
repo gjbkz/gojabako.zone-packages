@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.10 (2022-09-04)
+
+### Features
+
+- add pageListToJsModule ([0a2ee7b](https://github.com/gjbkz/gojabako.zone-packages/commit/0a2ee7b9fdc247868dbab50657d2fb9ff0ada777))
+
+
 ## v0.1.9 (2022-09-03)
 
 ### Bug Fixes
