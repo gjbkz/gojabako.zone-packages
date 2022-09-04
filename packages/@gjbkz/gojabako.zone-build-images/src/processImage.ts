@@ -1,7 +1,8 @@
 import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 import * as console from 'console';
-import * as squoosh from '@squoosh/lib';
+import type {EncoderOptions} from '@squoosh/lib';
 import {rmrf, getHash} from '@gjbkz/gojabako.zone-node-util';
 import type {EncodeResult} from './isEncodeResult';
 import {listImageWidthPatterns} from './listImageWidthPatterns';
@@ -10,8 +11,10 @@ import type {ImageData} from './isImageData';
 const version = 1;
 const resultFileName = 'result.json';
 
-type SquooshImage = ReturnType<typeof squoosh.ImagePool.prototype.ingestImage>;
-type SquooshEncodeOptions = Parameters<SquooshImage['encode']>[0];
+interface SquooshEncodeOptions extends EncoderOptions {
+    optimizerButteraugliTarget?: number,
+    maxOptimizerRounds?: number,
+}
 interface Props {
     absolutePath: string,
     rootDirectory: string,
@@ -19,11 +22,12 @@ interface Props {
     publicDirectory: string,
 }
 
-export const processImage = async (imagePool: squoosh.ImagePool, props: Props) => {
+export const processImage = async (props: Props) => {
     const [loaded] = await Promise.all([
-        loadImage(imagePool, props),
+        loadImage(props),
         clearDirectory(props.outputDirectory),
     ]);
+    const {imagePool} = loaded;
     let {image} = loaded;
     const result: EncodeResult = {version, source: loaded.source, results: []};
     for (const width of listImageWidthPatterns(loaded.source.width)) {
@@ -49,6 +53,7 @@ export const processImage = async (imagePool: squoosh.ImagePool, props: Props) =
     }
     const resultPath = path.join(props.outputDirectory, resultFileName);
     await fs.promises.writeFile(resultPath, JSON.stringify(result, null, 4));
+    await imagePool.close();
     return result;
 };
 
@@ -58,15 +63,16 @@ const clearDirectory = async (directoryPath: string) => {
 };
 
 const loadImage = async (
-    imagePool: squoosh.ImagePool,
     {absolutePath, rootDirectory}: {
         absolutePath: string,
         rootDirectory: string,
     },
 ) => {
+    // eslint-disable-next-line import/dynamic-import-chunkname
+    const {ImagePool, encoders} = await import('@squoosh/lib');
+    const imagePool = new ImagePool(os.cpus().length);
     const sourceBuffer = await fs.promises.readFile(absolutePath);
     const image = imagePool.ingestImage(sourceBuffer);
-    const encodeOptions = getEncodeOptions(absolutePath);
     const {bitmap} = await image.decoded;
     const source: ImageData = {
         path: ['', ...path.relative(rootDirectory, absolutePath).split(path.sep)].join('/'),
@@ -75,20 +81,16 @@ const loadImage = async (
         height: bitmap.height,
         size: sourceBuffer.byteLength,
     };
-    return {source, sourceBuffer, image, encodeOptions};
-};
-
-const getEncodeOptions = (sourceFileAbsolutePath: string): SquooshEncodeOptions => {
     const encodeOptions: SquooshEncodeOptions = {
-        webp: {...squoosh.encoders.webp.defaultEncoderOptions},
-        avif: {...squoosh.encoders.avif.defaultEncoderOptions},
+        webp: {...encoders.webp.defaultEncoderOptions},
+        avif: {...encoders.avif.defaultEncoderOptions},
     };
-    switch (path.extname(sourceFileAbsolutePath)) {
+    switch (path.extname(absolutePath)) {
     case '.png':
-        encodeOptions.oxipng = {...squoosh.encoders.oxipng.defaultEncoderOptions};
+        encodeOptions.oxipng = {...encoders.oxipng.defaultEncoderOptions};
         break;
     default:
-        encodeOptions.mozjpeg = {...squoosh.encoders.mozjpeg.defaultEncoderOptions};
+        encodeOptions.mozjpeg = {...encoders.mozjpeg.defaultEncoderOptions};
     }
-    return encodeOptions;
+    return {source, sourceBuffer, image, imagePool, encodeOptions};
 };

@@ -1,7 +1,5 @@
 import * as fs from 'fs';
-import * as os from 'os';
 import * as path from 'path';
-import {ImagePool} from '@squoosh/lib';
 import {getHash} from '@gjbkz/gojabako.zone-node-util';
 import {loadPreviousResult} from './loadPreviousResult';
 import {processImage} from './processImage';
@@ -21,13 +19,11 @@ export interface BuildImagesProps {
 export const buildImages = async (props: BuildImagesProps) => {
     for await (const absolutePath of props.imageFiles) {
         const {previous, outputDirectory} = await loadImage(absolutePath, props);
-        const imagePool = new ImagePool(os.cpus().length);
-        const result = previous || await processImage(imagePool, {
+        const result = previous || await processImage({
             ...props,
             absolutePath,
             outputDirectory,
         });
-        await imagePool.close();
         const componentFilePath = `${absolutePath}.component.tsx`;
         const writer = fs.createWriteStream(componentFilePath);
         for (const line of serializeImageComponentScript(result)) {
