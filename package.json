@@ -17,8 +17,7 @@
         "clear": "node clear.mjs",
         "sync-packages": "node sync-packages.mjs",
         "preversion": "npm run sync-packages",
-        "version": "run-s sync-packages version:*",
-        "version:install": "npm install --workspaces",
+        "version": "run-s version:*",
         "version:changelog": "nlib-changelog --output CHANGELOG.md",
         "version:add": "git add ."
     },
