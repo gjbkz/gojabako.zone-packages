@@ -14,7 +14,6 @@ type SquooshImage = ReturnType<typeof squoosh.ImagePool.prototype.ingestImage>;
 type SquooshEncodeOptions = Parameters<SquooshImage['encode']>[0];
 interface Props {
     absolutePath: string,
-    relativePath: string,
     rootDirectory: string,
     outputDirectory: string,
     publicDirectory: string,
