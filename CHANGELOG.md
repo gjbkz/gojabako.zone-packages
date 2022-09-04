@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.13 (2022-09-04)
+
+### Bug Fixes
+
+- lazy load @squoosh/lib ([9e97db9](https://github.com/gjbkz/gojabako.zone-packages/commit/9e97db92e5cca5cb5d12d4ba496f6a36e6266985))
+
+
 ## v0.1.12 (2022-09-04)
 
 ### Bug Fixes
