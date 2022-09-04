@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.11 (2022-09-04)
+
+### Bug Fixes
+
+- use relative path from pages ([b1776d5](https://github.com/gjbkz/gojabako.zone-packages/commit/b1776d5cf054e4831a427c78f4883d3d58fbefa5))
+
+
 ## v0.1.10 (2022-09-04)
 
 ### Features
