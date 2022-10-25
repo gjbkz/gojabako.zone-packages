@@ -25,7 +25,7 @@
     },
     "dependencies": {
         "htmlparser2": "8.0.1",
-        "katex": "0.16.2",
+        "katex": "0.16.3",
         "lowlight": "2.7.0",
         "mdast-util-footnote": "1.1.0",
         "mdast-util-from-markdown": "1.2.0",
