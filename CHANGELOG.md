@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.15 (2023-01-05)
+
+### Bug Fixes
+
+- type errors ([6210d26](https://github.com/gjbkz/gojabako.zone-packages/commit/6210d26169e16cd815e3beec762e0e5615f8666e))
+
+
 ## v0.1.14 (2023-01-05)
 
 ### Dependency Upgrades
