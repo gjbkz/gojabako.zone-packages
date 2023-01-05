@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.14 (2023-01-05)
+
+### Dependency Upgrades
+
+- @nlib/eslint-config:3.19.5→3.19.6 ([d6ff141](https://github.com/gjbkz/gojabako.zone-packages/commit/d6ff1413e275f21ea73acf9f1828c85bca89ae07))
+
+
 ## v0.1.13 (2022-09-04)
 
 ### Bug Fixes
