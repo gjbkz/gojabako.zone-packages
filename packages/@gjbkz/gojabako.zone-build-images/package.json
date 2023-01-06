@@ -26,6 +26,6 @@
     "dependencies": {
         "@gjbkz/gojabako.zone-node-util": "0.1.15",
         "@nlib/typing": "0.5.7",
-        "@squoosh/lib": "0.4.1"
+        "@squoosh/lib": "0.5.3"
     }
 }
